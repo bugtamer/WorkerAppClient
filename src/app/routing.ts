@@ -1,11 +1,11 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './login/login.component';
-import { BuscarComponent } from './buscar/buscar.component';
-import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
-import { RegistrarProfesionalComponent } from './registrar-profesional/registrar-profesional.component';
-import { DetalleComponent } from './detalle/detalle.component';
+import { LoginComponent } from './componentes/login/login.component';
+import { BuscarComponent } from './componentes/buscar/buscar.component';
+import { RegistrarUsuarioComponent } from './componentes/registrar-usuario/registrar-usuario.component';
+import { RegistrarProfesionalComponent } from './componentes/registrar-profesional/registrar-profesional.component';
+import { DetalleComponent } from './componentes/detalle/detalle.component';
 
 import { PageNotFoundComponent } from './commons/page-not-found/page-not-found.component';
 
