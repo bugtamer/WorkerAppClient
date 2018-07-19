@@ -4,11 +4,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { DetalleComponent } from './detalle/detalle/detalle.component';
+import { PageNotFoundComponent } from './commons/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DetalleComponent
+    DetalleComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
