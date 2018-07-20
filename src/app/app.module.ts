@@ -15,6 +15,9 @@ import { ItemResultadoComponent } from './componentes/item-resultado/item-result
 import { BuscarComponent } from './componentes/buscar/buscar.component';
 import { RegistrarUsuarioComponent } from './componentes/registrar-usuario/registrar-usuario.component';
 import { RegistrarProfesionalComponent } from './componentes/registrar-profesional/registrar-profesional.component';
+import { MenuComponent } from './componentes/header/menu/menu.component';
+import { LogoComponent } from './componentes/header/logo/logo.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { RegistrarProfesionalComponent } from './componentes/registrar-profesion
     ItemResultadoComponent,
     BuscarComponent,
     RegistrarUsuarioComponent,
-    RegistrarProfesionalComponent
+    RegistrarProfesionalComponent,
+    MenuComponent,
+    LogoComponent,
+  
   ],
   imports: [
     BrowserModule,

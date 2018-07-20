@@ -6,12 +6,13 @@ import { BuscarComponent } from './componentes/buscar/buscar.component';
 import { RegistrarUsuarioComponent } from './componentes/registrar-usuario/registrar-usuario.component';
 import { RegistrarProfesionalComponent } from './componentes/registrar-profesional/registrar-profesional.component';
 import { DetalleComponent } from './componentes/detalle/detalle.component';
+import { MenuComponent } from './componentes/header/menu/menu.component';
 
 import { PageNotFoundComponent } from './commons/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
   { path: 'buscar', component: BuscarComponent, pathMatch: 'full' },
-  { path: 'login', component: LoginComponent, pathMatch: 'full' },
+  { path: 'login', component: LoginComponent,pathMatch: 'full' },
   { path: 'detalle', component: DetalleComponent, pathMatch: 'full' },
   { path: 'registrar/usuario', component: RegistrarUsuarioComponent, pathMatch: 'full' },
   { path: 'registrar/profesional', component: RegistrarProfesionalComponent, pathMatch: 'full' },
