@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ValoracionService } from '../../servicios/valoracion.service';
+<<<<<<< HEAD
 import { ProfesionalService } from '../../servicios/profesional.service';
 import { Profesional } from '../../modelos/Profesional';
+=======
+>>>>>>> master
 
 @Component({
   selector: 'app-detalle',
@@ -13,13 +16,19 @@ export class DetalleComponent implements OnInit {
 
   _pid:number;
   _valoracionMedia:number;
+<<<<<<< HEAD
   _profesional:Profesional;
 
   constructor(private _valoracionService:ValoracionService, private _profesionalService:ProfesionalService, private _route:ActivatedRoute) { }
+=======
+
+  constructor(private _valoracionService:ValoracionService, private _route:ActivatedRoute) { }
+>>>>>>> master
 
   ngOnInit() {
     this._route.params.subscribe( receivedPathParams => {
     this._pid = receivedPathParams['pid'];
+<<<<<<< HEAD
     
     this._valoracionService.getValoracionFromApi(this._pid).subscribe( receivedValoracion => {
       console.log('receivedValoracion', receivedValoracion);
@@ -32,6 +41,13 @@ export class DetalleComponent implements OnInit {
       this._profesional = receivedProfesional;
       console.log('this._profesional', this._profesional);
     }
+=======
+    this._valoracionService.getValoracionFromApi(this._pid).subscribe( receivedValoracion => {
+      console.log('receivedTasks', receivedValoracion);
+      this._valoracionMedia = receivedValoracion;
+      console.log('this._valoracionMedia', this._valoracionMedia);
+    }
+>>>>>>> master
   }
 
 }
