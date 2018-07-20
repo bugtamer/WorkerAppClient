@@ -1,7 +1,8 @@
 <section>
   <h2>Detalle</h2>
-  <p>NOMBRE</p>
-  <p>PROFESION</p>
-  <p>Avg: {{ _valoracionMedia }}</p>
+  <p>{{ _profesional.nombre }} {{ _profesional.apellidos }}</p>
+  <p>{{ _profesional.profesion }}</p>
+  <p>Valoración media: {{ _valoracionMedia }}</p>
   <P>DISTANCIA # km</P>
+  <p>{{ _profesional | json }}</p>
 </section>
