@@ -11,18 +11,18 @@ import { Usuario } from '../modelos/usuario';
 })
 export class AuthService {
 
-  private _apiAuth: string = 'http://localhost:8080/ProyectosTareas/api/auth';
+  private _apiAuth: string = 'http://localhost:8080/WorkerApp2/api/authenticate';
   private _token:string;
 
   constructor(private _httpClient:HttpClient) { }
 
-  authenticateUser(user:Usuario):Observable<string>{
+  authenticateUser(usuario:Usuario):Observable<string>{
 
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'email': user.email,
-        'pass': user.pass
+        'email': usuario.email,
+        'password': usuario.pass
       })
     };
 

@@ -1,8 +1,19 @@
 
-<form class="login">
-  <input type="text" class="login-input" placeholder="Correo">
-  <input type="password" class="login-input" placeholder="Contraseña">
-  <input type="submit" value="Login" class="login-button">
-  <p class="login-lost"><a href="">Haz perdido la contraseña?</a></p>
-  <p class="registro_btm"><a href="">Registrate?</a></p>
-<form>
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="login">
+    
+      <div *ngIf="errorForm" class="error">Completa todos los campos con el formato correcto</div>
+      <div *ngIf="errorServer" class="error">Datos incorrectos, vuelve a intentarlo</div>`
+
+        <input type="text" class="login-input" [(ngModel)]="usuario.email" #emailF="ngModel" name="email" placeholder="Correo">
+        <div class="error" *ngIf="!emailF.valid && emailF.dirty">Campo incorrecto</div>
+
+        <input type="password" class="login-input" [(ngModel)]="usuario.pass" #passF="ngModel" name="password" placeholder="Contraseña">
+        <div class="error" *ngIf="!passF.valid && passF.dirty">Campo incorrecto</div>
+
+        <input type="submit" value="Login" class="login-button">
+
+      <p class="login-lost"><a href="">Haz perdido la contraseña?</a></p>
+      <p class="registro_btm"><a href="">Registrate?</a></p>
+
+  <form>   
+ 

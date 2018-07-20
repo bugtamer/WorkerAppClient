@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     //console.log(loginForm, this.usuario);
     if (loginForm.valid) {
       this._authService.authenticateUser(this.usuario).subscribe(
-        token => { this._router.navigate(['/detalle']) },
+        token => { this._router.navigate(['/buscar']) },
         error => { this.errorServer = true; }
       );
     } else {
