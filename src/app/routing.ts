@@ -12,8 +12,8 @@ import { PageNotFoundComponent } from './commons/page-not-found/page-not-found.c
 
 const appRoutes: Routes = [
   { path: 'buscar', component: BuscarComponent, pathMatch: 'full' },
-  { path: 'login', component: LoginComponent,pathMatch: 'full' },
-  { path: 'detalle', component: DetalleComponent, pathMatch: 'full' },
+  { path: 'login', component: LoginComponent, pathMatch: 'full' },
+  { path: 'detalle/:pid', component: DetalleComponent, pathMatch: 'full' },
   { path: 'registrar/usuario', component: RegistrarUsuarioComponent, pathMatch: 'full' },
   { path: 'registrar/profesional', component: RegistrarProfesionalComponent, pathMatch: 'full' },
   { path: '', redirectTo: '/buscar',pathMatch: 'full'},
