@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ValoracionService } from '../../servicios/valoracion.service';
 import { ProfesionalService } from '../../servicios/profesional.service';
-import { Profesional } from '../../modelos/Profesional';
 import { GeolocalizacionService } from '../../servicios/geolocalizacion.service';
+import { Profesional } from '../../modelos/Profesional';
 import { Ubicacion } from '../../modelos/Ubicacion';
 
 
@@ -27,53 +27,53 @@ export class DetalleComponent implements OnInit {
     private _profesionalService:ProfesionalService,
     private _route:ActivatedRoute)
   {
-      this._profesional = new Profesional();
-      this._profesional.ubicacion = new Ubicacion();
-      this._ubicacionUsuario = new Ubicacion();
-      this._distancia = 'N/A';
-    }
+    this._profesional = new Profesional();
+    this._profesional.ubicacion = new Ubicacion();
+    this._ubicacionUsuario = new Ubicacion();
+    this._distancia = 'N/A';
+  }
 
 
-    ngOnInit() {
-      this._route.params.subscribe( receivedPathParams => {
-        this._pid = receivedPathParams['pid'];
-        this.setValoracionMedia(this._pid);
-        this.setProfesional(this._pid);
-        };
-    }
-
-    
-    private setValoracionMedia(pid:number):void {
-      this._valoracionService.getValoracionFromApi(this._pid).subscribe( receivedValoracion => {
-        this._valoracionMedia = receivedValoracion;
-      };
-    }
+  ngOnInit() {
+    this._route.params.subscribe( receivedPathParams => {
+      this._pid = receivedPathParams['pid'];
+      this.setValoracionMedia(this._pid);
+      this.setProfesional(this._pid);
+    });
+  }
 
     
-    private setProfesional(pid:number):void {
-      this._profesionalService.getProfesionalFromApi(this._pid).subscribe( (receivedProfesinal) => {
-        this._profesional = receivedProfesinal;
-        this.geolocalizar();
-      };
-    }
+  private setValoracionMedia(pid:number):void {
+    this._valoracionService.getValoracionFromApi(this._pid).subscribe( receivedValoracion => {
+      this._valoracionMedia = receivedValoracion;
+    });
+  }
+
+    
+  private setProfesional(pid:number):void {
+    this._profesionalService.getProfesionalFromApi(this._pid).subscribe( (receivedProfesinal) => {
+      this._profesional = receivedProfesinal;
+      this.geolocalizar();
+    });
+  }
 
   
-    geolocalizar():void {
-      this.setUbicacionUsuario();
-    }
+  geolocalizar():void {
+    this.setUbicacionUsuario();
+  }
   
     
-    private setUbicacionUsuario():void {
-      this._geoLocalizacion.getCurrentGeolocation().subscribe( receivedBrowserGeolocation => {
-        this._ubicacionUsuario.latitud = receivedBrowserGeolocation.coords.latitude;
-        this._ubicacionUsuario.longitud = receivedBrowserGeolocation.coords.longitude;
-        this.setDistancia(this._ubicacionUsuario, this._profesional.ubicacion);
-      } );
-    }
+  private setUbicacionUsuario():void {
+    this._geoLocalizacion.getCurrentGeolocation().subscribe( receivedBrowserGeolocation => {
+      this._ubicacionUsuario.latitud = receivedBrowserGeolocation.coords.latitude;
+      this._ubicacionUsuario.longitud = receivedBrowserGeolocation.coords.longitude;
+      this.setDistancia(this._ubicacionUsuario, this._profesional.ubicacion);
+    } );
+  }
 
     
-    private setDistancia(origen:Ubicacion, destino:Ubicacion):void {
-      this._distancia = this._geoLocalizacion.getDistanciaKm(origen, destino).toLocaleString('es-ES');
+  private setDistancia(origen:Ubicacion, destino:Ubicacion):void {
+    this._distancia = this._geoLocalizacion.getDistanciaKm(origen, destino).toLocaleString('es-ES');
   }
 
 }

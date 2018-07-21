@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ubicacion } from '../modelos/Ubicacion';
-import { BrowserGeolocation } from '../modelos/BrowserGeolocation';
 
 @Injectable({
   providedIn: 'root'
