@@ -17,30 +17,23 @@ export class ProfesionalService {
   constructor(private _httpClient:HttpClient) { }
 
   getProfesionalFromApi(valId:number):Observable<Profesional> {
-    console.log("ProfesionalService 1");
     
     if (this._profesionalStore) {
-      console.log("ProfesionalService 2");
       this._profesionalObs = of(this._profesionalStore);
     } else if (this._profesionalObs) {
-      console.log("ProfesionalService 3");
       // observable ya esta en curso
     } else {
-      console.log("ProfesionalService 4");
       this._profesionalObs = this._httpClient.get<Profesional>(
         `http://localhost:8080/WorkerApp2/api/profesional/${valId}`
       ).pipe(
         tap(
           data => {
-            console.log("ProfesionalService 5");
-            console.log("data", data);
             this._profesionalStore = data;
             localStorage.setItem('Profesional', JSON.stringify(this._profesionalStore));
           },
-          error => console.log('ProfesionalService', error)
+          error => console.error(error)
         ));
     }
-    console.log("ProfesionalService 6");
     return this._profesionalObs;
   }
 

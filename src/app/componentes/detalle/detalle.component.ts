@@ -19,7 +19,6 @@ export class DetalleComponent implements OnInit {
   _profesional:Profesional;
   _ubicacionUsuario:Ubicacion;
   _distancia:string;
-  geo:string;
 
   
   constructor(
@@ -31,7 +30,8 @@ export class DetalleComponent implements OnInit {
       this._profesional = new Profesional();
       this._profesional.ubicacion = new Ubicacion();
       this._ubicacionUsuario = new Ubicacion();
-  }
+      this._distancia = 'N/A';
+    }
 
 
     ngOnInit() {

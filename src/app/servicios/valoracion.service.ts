@@ -15,7 +15,6 @@ export class ValoracionService {
   constructor(private _httpClient:HttpClient) { }
 
 
-
   getValoracionFromApi(valId:number):Observable<number> {
     if (this._valoracionStore) {
       this._valoracionObs = of(this._valoracionStore);
@@ -27,16 +26,13 @@ export class ValoracionService {
       ).pipe(
         tap(
           data => {
-            console.log("data", data);
             this._valoracionStore = data;
             localStorage.setItem('valoracion', JSON.stringify(this._valoracionStore));
           },
-          error => console.log('ValoracionService', error)
+          error => console.error(error)
         ));
     }
     return this._valoracionObs;
   }
-
-
 
 }
