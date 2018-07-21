@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ValoracionService } from '../../servicios/valoracion.service';
 import { ProfesionalService } from '../../servicios/profesional.service';
 import { Profesional } from '../../modelos/Profesional';
+import { GeolocalizacionService } from '../../servicios/geolocalizacion.service';
+import { Ubicacion } from '../../modelos/Ubicacion';
 
 
 @Component({
@@ -15,12 +17,21 @@ export class DetalleComponent implements OnInit {
   _pid:number;
   _valoracionMedia:number;
   _profesional:Profesional;
+  _ubicacionUsuario:Ubicacion;
+  _distancia:string;
+  geo:string;
 
   
   constructor(
+    private _geoLocalizacion:GeolocalizacionService,
     private _valoracionService:ValoracionService,
     private _profesionalService:ProfesionalService,
-    private _route:ActivatedRoute) { }
+    private _route:ActivatedRoute)
+  {
+      this._profesional = new Profesional();
+      this._profesional.ubicacion = new Ubicacion();
+      this._ubicacionUsuario = new Ubicacion();
+  }
 
 
     ngOnInit() {
@@ -28,26 +39,41 @@ export class DetalleComponent implements OnInit {
         this._pid = receivedPathParams['pid'];
         this.setValoracionMedia(this._pid);
         this.setProfesional(this._pid);
-      }
+        };
     }
 
     
-    setValoracionMedia(pid:number) {
+    private setValoracionMedia(pid:number):void {
       this._valoracionService.getValoracionFromApi(this._pid).subscribe( receivedValoracion => {
-        console.log('receivedValoracion', receivedValoracion);
         this._valoracionMedia = receivedValoracion;
-        console.log('this._valoracionMedia', this._valoracionMedia);
-      }
+      };
     }
 
     
-    setProfesional(pid:number) {
-      let pro:Profesional;
-      this._profesionalService.getProfesionalFromApi(this._pid).subscribe( receivedData => {
-        console.log('receivedProfesional', receivedData);
-        this._profesional = receivedData;
-        console.log('this._profesional', this._profesional);
-      }
+    private setProfesional(pid:number):void {
+      this._profesionalService.getProfesionalFromApi(this._pid).subscribe( (receivedProfesinal) => {
+        this._profesional = receivedProfesinal;
+        this.geolocalizar();
+      };
     }
+
+  
+    geolocalizar():void {
+      this.setUbicacionUsuario();
+    }
+  
+    
+    private setUbicacionUsuario():void {
+      this._geoLocalizacion.getCurrentGeolocation().subscribe( receivedBrowserGeolocation => {
+        this._ubicacionUsuario.latitud = receivedBrowserGeolocation.coords.latitude;
+        this._ubicacionUsuario.longitud = receivedBrowserGeolocation.coords.longitude;
+        this.setDistancia(this._ubicacionUsuario, this._profesional.ubicacion);
+      } );
+    }
+
+    
+    private setDistancia(origen:Ubicacion, destino:Ubicacion):void {
+      this._distancia = this._geoLocalizacion.getDistanciaKm(origen, destino).toLocaleString('es-ES');
+  }
 
 }

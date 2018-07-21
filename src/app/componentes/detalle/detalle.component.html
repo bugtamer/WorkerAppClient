@@ -3,6 +3,9 @@
   <p>{{ _profesional.nombre }} {{ _profesional.apellidos }}</p>
   <p>{{ _profesional.profesion }}</p>
   <p>Valoración media: {{ _valoracionMedia }}</p>
-  <P>DISTANCIA # km</P>
+  <P>DISTANCIA {{ _distancia }} km</P>
   <p>{{ _profesional | json }}</p>
+  <p>{{ _ubicacionUsuario | json }}</p>
+  <p>{{ geo | json }}</p>
+  <button (click)="geolocalizar()">Geolocalizar</button>
 </section>
