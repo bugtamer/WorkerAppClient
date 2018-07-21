@@ -1,10 +1,34 @@
 <section>
   <h2>Detalle</h2>
-  <p>{{ _profesional.nombre }} {{ _profesional.apellidos }}</p>
+  
+  <h3>{{ _profesional.nombre }} {{ _profesional.apellidos }}</h3>
   <p>{{ _profesional.profesion }}</p>
   <p>Valoración media: {{ _valoracionMedia }}</p>
-  <P>DISTANCIA {{ _distancia }} km</P>
-  <p>{{ _profesional | json }}</p>
-  <p>{{ _ubicacionUsuario | json }}</p>
-  <button (click)="geolocalizar()">Geolocalizar</button>
+  <p>
+    {{ _distancia }} km 
+    <i class="large material-icons white-text">{{ _distancia === 'N/A' ? 'not_listed_location' : 'person_pin_circle' }}</i>
+  </p>
+  <button (click)="geolocalizar()"><i class="large material-icons white-text">add_location</i></button>
+  
+  <i class="large material-icons white-text">where_to_vote</i>
+  <i class="large material-icons white-text">not_listed_location</i>
+  <i class="large material-icons white-text">person_pin</i>
+  <i class="large material-icons white-text">pin_drop</i>
+  <i class="large material-icons white-text">place</i>
+
+  
+  <h4>Experiencia</h4>
+  <ul *ngIf="_profesional.experiencia">
+    <li *ngFor="let exp of _profesional.experiencia">{{exp}}</li>
+  </ul>
+  
+  <h4>Educacion</h4>
+  <ul *ngIf="_profesional.educacion">
+    <li *ngFor="let edu of _profesional.educacion">{{edu}}</li>
+  </ul>
+  
+  <h4>Valoraciones</h4>
+  <ul *ngIf="_profesional.valoraciones">
+    <li *ngFor="let val of _profesional.valoraciones">{{val}}</li>
+  </ul>
 </section>
