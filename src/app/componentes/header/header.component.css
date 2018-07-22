@@ -1,5 +1,3 @@
-li {
-    display: inline;
-    margin-right: 1em;
-    list-style-type: none;
+app-menu {
+    display: inline-block;
 }

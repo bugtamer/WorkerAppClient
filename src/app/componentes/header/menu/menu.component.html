@@ -1,16 +1,26 @@
-<div class="container">
-  <div class="tutorial">
-    <div>
-      <h1>WorkeAPP</h1>
-    </div>
-    <ul>
-      <li>Inicio</li>
-      <li>Login</li>
-      <li>Registro</li>
-      <li>Registro Profesional</li>
-      <li>Último Ticket</li>
-      <li>Histórico Tickets</li>
-      <li>Mis Favoritos</li>
-    </ul>
-  </div>
+<section>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/buscar']">
+      <mat-icon>search</mat-icon>
+      <span>Buscar</span>
+    </button>
 
+    <button mat-menu-item [routerLink]="estaAutorizado() ? ['/logout'] : ['/login']">
+      <mat-icon>power_settings_new</mat-icon>
+      <span>{{ logInOutTag() }}</span>
+    </button>
+
+    <button mat-menu-item [routerLink]="['/registrar/usuario']">
+      <mat-icon>account_circle</mat-icon>
+      <span>Registrar usuario</span>
+    </button>
+
+    <button mat-menu-item [routerLink]="['/registrar/profesional']">
+      <mat-icon>account_box</mat-icon>
+      <span>Registrar profesional</span>
+    </button>
+  </mat-menu>
+</section>

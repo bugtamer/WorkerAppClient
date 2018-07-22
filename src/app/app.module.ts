@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { routingProvider } from './routing';
+import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { DetalleComponent } from './componentes/detalle/detalle.component';
@@ -41,6 +42,7 @@ import { LogoutComponent } from './componentes/logout/logout.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    MaterialModule,
     BrowserAnimationsModule,
     routingProvider
   ],

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators'
 import { of } from 'rxjs';
 
-import { AuthService } from '../servicios/auth.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'

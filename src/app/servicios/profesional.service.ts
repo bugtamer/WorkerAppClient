@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators'
 import { of } from 'rxjs';
 
-import { AuthService } from '../servicios/auth.service';
+import { AuthService } from './auth.service';
 import { Profesional } from '../modelos/Profesional';
 
 @Injectable({
@@ -19,11 +19,11 @@ export class ProfesionalService {
 
   getProfesionalFromApi(valId:number):Observable<Profesional> {
     
-    if (this._profesionalStore) {
-      this._profesionalObs = of(this._profesionalStore);
-    } else if (this._profesionalObs) {
-      // observable ya esta en curso
-    } else {
+    // if (this._profesionalStore) {
+    //   this._profesionalObs = of(this._profesionalStore);
+    // } else if (this._profesionalObs) {
+    //   // observable ya esta en curso
+    // } else {
       let httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export class ProfesionalService {
           },
           error => console.error(error)
         ));
-    }
+    // }
     return this._profesionalObs;
   }
 
