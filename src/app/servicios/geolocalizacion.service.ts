@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators'
+import { of } from 'rxjs';
 import { Ubicacion } from '../modelos/Ubicacion';
 
 @Injectable({
@@ -7,9 +10,14 @@ import { Ubicacion } from '../modelos/Ubicacion';
 })
 export class GeolocalizacionService {
 
-  constructor() { }
+  private _resultadosStore:any;
+  private _resultadosObs:Observable<any>;
+
+  constructor(private _httpClient:HttpClient) { }
 
   
+  // UBICACIONES
+
   getCurrentGeolocation():Observable<any> {
     return Observable.create(observer => {
       if(window.navigator && window.navigator.geolocation) {
@@ -55,6 +63,31 @@ export class GeolocalizacionService {
   
   private toDec(rad:number):number {
     return rad * 180/Math.PI
+  }
+
+
+    
+  // SERVICIOS
+
+  getServiciosGeolocalizados(terminoBusqueda:string, valoracion:number, ubicacion:Ubicacion, distancia:number):Observable<any> {
+    console.log('terminoBusqueda', terminoBusqueda, 'ubicacion', ubicacion, 'distancia', distancia);
+    if (this._resultadosStore) {
+      this._resultadosObs = of(this._resultadosStore);
+    } else if (this._resultadosObs) {
+      // observable ya esta en curso
+    } else {
+      let apiURL = `http://localhost:8080/WorkerApp2/api/ubicacion/geoservice?servicio=${terminoBusqueda}&valoracion=${valoracion}&distancia=${distancia}&latitud=${ubicacion.latitud}&longitud=${ubicacion.longitud}`;
+      console.log('apiURL', apiURL);
+      this._resultadosObs = this._httpClient.get<any>(apiURL).pipe(
+        tap(
+          data => {
+            this._resultadosStore = data;
+            localStorage.setItem('resultados', JSON.stringify(this._resultadosStore));
+          },
+          error => console.error(error)
+        ));
+    }
+    return this._resultadosObs;
   }
 
 }

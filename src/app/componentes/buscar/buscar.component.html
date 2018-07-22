@@ -1,3 +1,27 @@
-<p>
-  buscar works!
-</p>
+<section>
+    <h2>Buscar</h2>
+
+  <div>
+    <form #searchForm="ngForm" (ngSubmit)="buscar(searchForm)">
+      <i class="large material-icons white-text">{{ estaGeolocalizado ? 'not_listed_location' : 'person_pin_circle' }}</i>
+      <input required type="text" name="terminoBusqueda" [(ngModel)]="terminoBusqueda" minlength="1" placeholder="Qué quieres encontar">
+      <input required type="number" name="distancia" [(ngModel)]="distancia" minlength="1" placeholder="Distancia máxima">
+      <input required type="number" name="valoracion" [(ngModel)]="valoracion" minlength="1" placeholder="Valoración mínima">
+      <button (click)="buscar">
+        <i class="large material-icons white-text">search</i>
+      </button>
+    </form>
+  </div>
+  <p>{{ terminoBusqueda }}</p>
+  <p>listaResultados {{ listaResultados.length }}</p>
+  <ul *ngIf="listaResultados">
+    <li *ngFor="let profesional of listaResultados">
+      <a [routerLink]="['/detalle/',profesional.proId]">{{ profesional.nombre }} {{ profesional.apellidos }}</a>
+      <img [src]="profesional.url_avatar" [alt]="profesional.nombre">
+      {{ profesional.distancia }} km
+      {{ profesional.profesion }}
+      {{ profesional.valoracionMedia }}
+    </li>
+  </ul>
+
+</section>

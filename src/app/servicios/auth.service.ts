@@ -13,8 +13,11 @@ export class AuthService {
 
   private _apiAuth: string = 'http://localhost:8080/WorkerApp2/api/authenticate';
   private _token:string;
+  private _estaAutenticado:boolean;
 
-  constructor(private _httpClient:HttpClient) { }
+  constructor(private _httpClient:HttpClient) {
+    this._estaAutenticado = false;
+  }
 
   authenticateUser(usuario:Usuario):Observable<string>{
 
@@ -29,7 +32,12 @@ export class AuthService {
     return this._httpClient.get<any>(this._apiAuth,httpOptions)
     .pipe(
       tap(
-        data => {this._token = data.token; console.log("token:",this._token);},
+        data => {
+          sessionStorage.setItem('token', data['token']);
+          this._token = data.token;
+          this._estaAutenticado = true;
+          console.log("token:",this._token);
+        },
         error => console.log('error:', error)
       )
     );
@@ -37,6 +45,17 @@ export class AuthService {
 
   getToken():string{
     return this._token;
+  }
+
+  get estaAutenticado() {
+    return this._estaAutenticado;
+  }
+
+  
+  logout():void {
+    this._estaAutenticado = false;
+    sessionStorage.removeItem('token');
+    this._token = '';
   }
 
 }

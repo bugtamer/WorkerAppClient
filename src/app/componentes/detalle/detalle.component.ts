@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ValoracionService } from '../../servicios/valoracion.service';
 import { ProfesionalService } from '../../servicios/profesional.service';
 import { GeolocalizacionService } from '../../servicios/geolocalizacion.service';
+import { AuthService } from '../../servicios/auth.service';
+import { Router } from '@angular/router';
 import { Profesional } from '../../modelos/Profesional';
 import { Ubicacion } from '../../modelos/Ubicacion';
 
@@ -25,8 +27,13 @@ export class DetalleComponent implements OnInit {
     private _geoLocalizacion:GeolocalizacionService,
     private _valoracionService:ValoracionService,
     private _profesionalService:ProfesionalService,
-    private _route:ActivatedRoute)
+    private _authService:AuthService,
+    private _route:Router,
+    private _activatedRoute:ActivatedRoute)
   {
+    if (this._authService.estaAutenticado == false) {
+      this._route.navigate(['/login']);
+    }
     this._profesional = new Profesional();
     this._profesional.ubicacion = new Ubicacion();
     this._ubicacionUsuario = new Ubicacion();
@@ -35,7 +42,7 @@ export class DetalleComponent implements OnInit {
 
 
   ngOnInit() {
-    this._route.params.subscribe( receivedPathParams => {
+    this._activatedRoute.params.subscribe( receivedPathParams => {
       this._pid = receivedPathParams['pid'];
       this.setValoracionMedia(this._pid);
       this.setProfesional(this._pid);

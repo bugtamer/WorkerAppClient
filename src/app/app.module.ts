@@ -17,6 +17,7 @@ import { RegistrarUsuarioComponent } from './componentes/registrar-usuario/regis
 import { RegistrarProfesionalComponent } from './componentes/registrar-profesional/registrar-profesional.component';
 import { MenuComponent } from './componentes/header/menu/menu.component';
 import { LogoComponent } from './componentes/header/logo/logo.component';
+import { LogoutComponent } from './componentes/logout/logout.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { LogoComponent } from './componentes/header/logo/logo.component';
     RegistrarProfesionalComponent,
     MenuComponent,
     LogoComponent,
+    LogoutComponent,
   
   ],
   imports: [
