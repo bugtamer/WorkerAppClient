@@ -2,7 +2,7 @@ section {
     text-align: center;
 }
 
-div {
+div, details {
     margin-bottom: 1.5em;
 }
 

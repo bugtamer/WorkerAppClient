@@ -9,7 +9,9 @@
         <input #terminoBusquedaNg="ngModel" required id="terminoBusqueda" type="text" name="terminoBusqueda" [(ngModel)]="terminoBusqueda" minlength="1" class="buscar-input" placeholder="Qué quieres encontar">
         <div class="error" *ngIf="!terminoBusquedaNg.valid && terminoBusquedaNg.dirty">Campo obligatorio</div>
       </div>
-      <div>
+      <details>
+        <summary><h4>Filtros</h4></summary>
+        <div>
           <label for="distancia">Distancia máxima en km</label><br>
           <input #distanciaNg="ngModel" required type="number" id="distancia" name="distancia" [(ngModel)]="distancia" minlength="1" class="buscar-input" placeholder="Distancia máxima en km">
           <div class="error" *ngIf="!distanciaNg.valid && distanciaNg.dirty">Campo obligatorio</div>
@@ -19,6 +21,7 @@
           <input #valoracionNg="ngModel" required type="number" id="valoracion" name="valoracion" [(ngModel)]="valoracion" minlength="1" class="buscar-input" placeholder="Valoración mínima">
           <div class="error" *ngIf="!valoracionNg.valid && valoracionNg.dirty">Campo obligatorio</div>
       </div>
+      </details>
       <div>
         <button (click)="buscar" class="buscar_btm">
           <i class="large material-icons white-text">search</i>
@@ -27,7 +30,7 @@
     </form>
   </div>
   <p>{{ terminoBusqueda }}</p>
-  <p>listaResultados {{ listaResultados.length }}</p>
+  <p>Número de resultados {{ listaResultados.length }}</p>
   <ul *ngIf="listaResultados">
     <li *ngFor="let profesional of listaResultados">
       <a [routerLink]="['/detalle/',profesional.proId]">{{ profesional.nombre }} {{ profesional.apellidos }}</a>
