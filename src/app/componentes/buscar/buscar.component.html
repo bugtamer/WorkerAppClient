@@ -2,14 +2,25 @@
     <h2>Buscar</h2>
 
   <div>
+    <i class="large material-icons white-text">{{ estaGeolocalizado ? 'not_listed_location' : 'person_pin_circle' }}</i>
     <form #searchForm="ngForm" (ngSubmit)="buscar(searchForm)">
-      <i class="large material-icons white-text">{{ estaGeolocalizado ? 'not_listed_location' : 'person_pin_circle' }}</i>
-      <input required type="text" name="terminoBusqueda" [(ngModel)]="terminoBusqueda" minlength="1" placeholder="Qué quieres encontar">
-      <input required type="number" name="distancia" [(ngModel)]="distancia" minlength="1" placeholder="Distancia máxima">
-      <input required type="number" name="valoracion" [(ngModel)]="valoracion" minlength="1" placeholder="Valoración mínima">
-      <button (click)="buscar">
-        <i class="large material-icons white-text">search</i>
-      </button>
+      <div>
+        <label for="terminoBusqueda">Qué quieres encontrar</label><br>
+        <input required id="terminoBusqueda" type="text" name="terminoBusqueda" [(ngModel)]="terminoBusqueda" minlength="1" placeholder="Qué quieres encontar">
+      </div>
+      <div>
+          <label for="distancia">Distancia máxima en km</label><br>
+          <input required type="number" id="distancia" name="distancia" [(ngModel)]="distancia" minlength="1" placeholder="Distancia máxima en km">
+      </div>
+      <div>
+          <label for="valoracion">Valoración mínima</label><br>
+          <input required type="number" id="valoracion" name="valoracion" [(ngModel)]="valoracion" minlength="1" placeholder="Valoración mínima">
+      </div>
+      <div>
+        <button (click)="buscar">
+          <i class="large material-icons white-text">search</i>
+        </button>
+      </div>
     </form>
   </div>
   <p>{{ terminoBusqueda }}</p>
