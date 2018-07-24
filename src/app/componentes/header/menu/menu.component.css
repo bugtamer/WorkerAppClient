@@ -1,4 +1,136 @@
-*,
+
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Karla', sans-serif;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+
+
+/*--------------------------------------------------header--------------------------------------------------*/
+header {
+  width: 100%;
+  background-color:#f0776c;
+  height: 50px;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.contenedor {
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+/*--------------------------------------------------Menu--------------------------------------------------*/
+
+#menu-bar {
+  display: none;
+}
+
+h1 {
+  float: left;
+  line-height: 50px;
+}
+
+header label {
+  float: right;
+  margin: 5px 0px;
+  cursor: pointer;
+}
+
+header .contenedor {
+  display: table; /*para limpiar el contenedor de los left*/
+}
+
+.menu {
+  position: absolute;
+  width: 100%;
+  height: 100vh; /*para que ocupe siempre el alto de la pantalla*/
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 50px;
+  left: 0;
+  transition: all 0.9s;
+  transform: translateX(-100%); /*con este comando hago que el menu desaparezca*/
+}
+
+.menu a {
+  display: block;
+  color: white;
+  height: 50px;
+  text-decoration: none;
+  padding: 0 10px;
+  margin-left: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.menu a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 35px;
+}
+
+#menu-bar:checked ~ .menu {
+  transform: translateX(0%); /*con este hago que el menu vuelva a aparecer, volviendo la translacion al 100%*/
+}
+
+@media (min-width: 1024px) {
+  .menu {
+      position: static;
+      width: auto;
+      height: auto;
+      transform: translateX(0%); /*regresa a su posicion, con esta query volvemos el translateX a 0%*/
+      float: right; /* para llevarlo a la derecha */
+      background-color: rgba(0, 0, 0, 0);
+
+
+  }
+
+  .contenedor ul li {
+      float: left;
+      list-style-type: none;
+      
+  }
+  .contenedor ul{
+      display: flex;
+      padding: 10px;
+  }
+
+  header label {
+      display: none;
+  }
+
+  .menu a {
+      border-bottom: none; /* para quitarle el borde que les dimos*/
+      vertical-align: middle;
+  }
+}
+
+
+/*----------------------------------------Media Queries----------------------------------------*/
+
+/* query del Contenedor*/
+@media (min-width: 1024px) {
+  .contenedor {
+      width: 1100px;
+  }
+
+}
+@media (max-width: 800px) { 
+header label img{
+  margin-left: 40px;
+}
+}
+
+
+
+/* *,
 *:before,
 *:after {
   margin: 0;
@@ -40,5 +172,5 @@ body, html {
 
 .tutorial ul li:hover ul li:hover {
   background-color: #e0e0e0;
-}
+} */
 

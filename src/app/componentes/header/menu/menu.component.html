@@ -1,4 +1,25 @@
-<section>
+
+  <header>
+    <div class="contenedor">
+        <h1>WorkeAPP</h1>
+        <input type="checkbox" id="menu-bar">
+        <label for="menu-bar"><img src="../../../../assets/imgs/icono-menu.png"></label>
+      <nav id="navigation" class="menu">
+        <ul>
+          <li><a [routerLink]="['/buscar']">Buscar</a></li>
+          <li><a [routerLink]="['/registrar/usuario']">Reg. usu</a></li>
+          <li><a [routerLink]="['/registrar/profesional']">Reg. pro</a></li>
+          <li><a [routerLink]="['/login']">Login</a></li>
+          <li><a [routerLink]="['/logout']">Logout</a></li>
+          <li><a [routerLink]="['/detalle/2']">Detalle Pro #2</a></li>
+          <li><a [routerLink]="['/fakeURL']">Error 404</a></li>
+        </ul>
+      </nav>
+    </div>    
+  </header>
+  
+
+<!-- <section>
   <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>menu</mat-icon>
   </button>
@@ -23,4 +44,4 @@
       <span>Registrar profesional</span>
     </button>
   </mat-menu>
-</section>
+</section> -->
