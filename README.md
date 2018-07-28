@@ -1,5 +1,7 @@
 # WorkerAppClient
 
+This unfinished SPA consumes the API REST of [WorkerApp2](https://github.com/bugtamer/WorkerApp2).
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 ## Development server
